@@ -8,28 +8,64 @@
     android:background="@drawable/backgroud2">
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
+        android:id="@+id/editTextEmail"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+        android:hint="Adresse email"
         android:inputType="textEmailAddress"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#070707"
+        android:textColorLink="#FFFFFF"
+        android:textCursorDrawable="@color/bleu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/editTextMdp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="80dp"
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+        android:hint="Mot de passe"
         android:inputType="textPassword"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#000000"
+        android:textColorLink="#FFFFFF"
+        android:textCursorDrawable="@color/bleu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        app:layout_constraintVertical_bias="0.0"
+
+
+        />
+
+    <TextView
+        android:id="@+id/textViewMdpOb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/bold"
+        android:text="Mot de passe oublié "
+        android:textColor="#C6FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMdp"
         app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
