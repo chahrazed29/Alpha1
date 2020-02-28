@@ -7,23 +7,57 @@
     tools:context=".LoginActivity"
     android:background="@drawable/backgroud2">
 
+    <TextView
+        android:id="@+id/textInscrire2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="108dp"
+        android:layout_marginRight="108dp"
+        android:fontFamily="@font/bold"
+        android:text="S’inscrire "
+        android:textColor="@color/bleu"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textCompte"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.926" />
+
+    <TextView
+        android:id="@+id/textCompte2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/light"
+        android:text="Vous n'avez pas de compte ? "
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textInscrire2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.926" />
+
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="216dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
         android:ems="10"
         android:hint="Adresse email"
         android:inputType="textEmailAddress"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorHint="#070707"
-        android:textColorLink="#FFFFFF"
-        android:textCursorDrawable="@color/bleu"
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
+
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,41 +65,59 @@
         android:id="@+id/editTextMdp"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
         android:ems="10"
         android:hint="Mot de passe"
+
         android:inputType="textPassword"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorHint="#000000"
-        android:textColorLink="#FFFFFF"
-        android:textCursorDrawable="@color/bleu"
+        android:textColor="#0A0A0A"
+        android:textColorHighlight="#3E000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/input_field"
+        android:textIsSelectable="false"
         app:layout_constraintBottom_toBottomOf="parent"
+
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        app:layout_constraintVertical_bias="0.0"
-
-
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewMdpOb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/bold"
         android:text="Mot de passe oublié "
         android:textColor="#C6FFFFFF"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMdp"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.351" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="162dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button2"
+        android:text="Se connecte"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMdpOb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMdp"
+        app:layout_constraintVertical_bias="0.254" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
