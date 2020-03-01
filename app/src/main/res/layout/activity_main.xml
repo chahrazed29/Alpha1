@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="440dp"
         android:alpha="0.6"
-        android:fontFamily=""
+        android:fontFamily="@font/lightitalic"
         android:text="C'est un plaisir de vous revoir"
         android:textColor="@color/white"
         android:textSize="16sp"
