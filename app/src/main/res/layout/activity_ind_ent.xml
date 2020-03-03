@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IndEntActivity"
-    android:background="@drawable/backgroud2">
+    android:background="@drawable/backround3">
 
     <Button
         android:id="@+id/buttonInd"
@@ -41,7 +41,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.774" />
 
     <TextView
         android:id="@+id/textView"
