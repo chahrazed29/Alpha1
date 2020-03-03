@@ -9,48 +9,92 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
-        android:inputType="phone"
-        android:text="Prenom"
+        android:hint="Prenom"
+        android:inputType="textPersonName"
+        android:textColor="#000000"
+
+        android:textColorHighlight="#75000000"
+
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+
+        android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
     <EditText
         android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
+
         android:ems="10"
+        android:hint="Nom"
         android:inputType="textPersonName"
-        android:text="Nom"
+
+        android:textColor="#000000"
+
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:layout_marginTop="50dp"
+        android:alpha="0.4"
+
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+
+        android:hint=" Nom D'utilisateur"
         android:inputType="textPersonName"
-        android:text=" Nom D'utilisateur"
+
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.4"
+
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:text="Email"
+
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,22 +103,46 @@
 
     <EditText
         android:id="@+id/editText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.4"
+
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+
+        android:hint="Mot de Passe"
         android:inputType="textPassword"
+
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
     <EditText
         android:id="@+id/editText6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.4"
+
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+
+        android:hint="Confirmez Mot de Passe"
         android:inputType="textPassword"
+
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,12 +150,23 @@
 
     <EditText
         android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.4"
+
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+
+        android:hint="telephone"
+
         android:inputType="phone"
-        android:text="Telephone"
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText4" />
@@ -112,10 +191,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
         android:text="Rendre Le compte Privé"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText6" />
+
+    <ImageView
+        android:id="@+id/backbtn1"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:alpha="0.4"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+        app:srcCompat="@drawable/ic_arrow_back_black"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

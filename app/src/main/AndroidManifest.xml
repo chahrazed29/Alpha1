@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EntrepriseActivity"
-            android:parentActivityName=".IndEntActivity"></activity>
-        <activity android:name=".IndividuActivity"
-            android:parentActivityName=".IndEntActivity"/>
+            ></activity>
+        <activity android:name=".IndividuActivity" />
         <activity android:name=".IndEntActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">

@@ -9,12 +9,24 @@
 
     <EditText
         android:id="@+id/editText8"
-        android:layout_width="212dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+
+
+        android:hint="Nom Entreprise"
         android:inputType="textPersonName"
-        android:text="Nom Entreprise"
+
+        android:textColor="#0A0A0A"
+        android:textColorHighlight="#3E000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/input_field"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -23,13 +35,25 @@
 
     <EditText
         android:id="@+id/editText10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
+
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
+
         android:ems="10"
+        android:hint="N registre de commerce"
         android:inputType="number"
-        android:text="N Registre de  Commerce"
+        android:textColor="#0A0A0A"
+        android:textColorHighlight="#3E000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/input_field"
+
+
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -38,46 +62,92 @@
 
     <EditText
         android:id="@+id/editText11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="40dp"
+
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:text="Email"
+        android:textColor="#0A0A0A"
+        android:textColorHighlight="#3E000000"
+
+
+        android:textColorLink="@color/white"
+
+
+        android:textCursorDrawable="@drawable/input_field"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="40dp"
+
+
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+
+        android:hint="Télephone"
         android:inputType="phone"
-        android:text="Télephone"
+
+        android:textColor="#0A0A0A"
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="40dp"
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+        android:hint="Mot de passe"
+
         android:inputType="textPassword"
+
+        android:textColor="#0A0A0A"
+        android:textColorHighlight="#3E000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/input_field"
+        android:textIsSelectable="false"
         app:layout_constraintBottom_toTopOf="@+id/editText14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="40dp"
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+        android:cursorVisible="true"
         android:ems="10"
+        android:hint="Confirmez Mot de passe"
         android:inputType="textPassword"
+        android:textColor="#0A0A0A"
+        android:textColorHighlight="#3E000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/input_field"
+        android:textIsSelectable="false"
         app:layout_constraintBottom_toTopOf="@+id/checkBox2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -96,10 +166,36 @@
         android:id="@+id/button3"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/button2"
         android:text="Suivant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/backbtn2"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+        app:srcCompat="@drawable/ic_arrow_back_black"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:alpha="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/retoure" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

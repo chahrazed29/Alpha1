@@ -1,31 +1,38 @@
 package com.example.alpha;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.MenuItem;
+
+import android.view.View;
+import android.widget.Button;
+
+
 
 public class IndividuActivity extends AppCompatActivity {
-
+//public ImageView BackButton1;
+public Button b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individu);
-        //add back button
+        b.findViewById(R.id.backbtn1);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    //BackButton1.findViewById(R.id.backbtn1);
+      /*  BackButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });*/
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        int id=item.getItemId();
-        if (id==android.R.id.home){
-            //ends the act
-        this.finish();}
-
-
-        return super.onOptionsItemSelected(item);
-}
 }

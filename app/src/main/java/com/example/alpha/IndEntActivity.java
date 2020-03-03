@@ -5,20 +5,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class  IndEntActivity extends AppCompatActivity {
-
+    public Button button;
+    public Button button1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ind_ent);
+        button=(Button)findViewById(R.id.buttonInd);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(IndEntActivity.this,IndividuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+         button1= (Button) findViewById(R.id.buttonEnt);
+         button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent( IndEntActivity.this,EntrepriseActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-    public void btninscind (View view)
-    {
-        startActivity(new Intent(this,IndividuActivity.class));
-    }
-    public void btninscent (View view)
-    {
-        startActivity(new Intent(this,EntrepriseActivity.class));
-    }
+
+
 }

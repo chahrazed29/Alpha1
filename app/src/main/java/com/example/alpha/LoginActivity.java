@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         insecrireTextView=(TextView)findViewById(R.id.textInscrire2);
+
         insecrireTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
