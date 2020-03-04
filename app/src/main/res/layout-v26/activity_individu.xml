@@ -5,134 +5,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backround3"
-    tools:context=".EntrepriseActivity">
+    tools:context=".IndividuActivity">
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/editText2"
         android:layout_width="230dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="50dp"
 
-        android:layout_marginBottom="32dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
 
-
         android:ems="10"
-        android:hint="Nom Entreprise"
+        android:hint="@string/nom_d_utilisateur"
 
         android:inputType="textPersonName"
-        android:textColor="#0A0A0A"
-        android:textColorHighlight="#3E000000"
-        android:textColorLink="@color/white"
-        android:textCursorDrawable="@drawable/input_field"
-        android:textIsSelectable="true"
-        app:layout_constraintBottom_toTopOf="@+id/editText10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/editText10"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-
-        android:layout_marginBottom="32dp"
-        android:alpha="0.4"
-        android:background="@drawable/input_field"
-
-        android:cursorVisible="true"
-        android:ems="10"
-        android:hint="N registre de commerce"
-        android:inputType="number"
-        android:textColor="#0A0A0A"
-        android:textColorHighlight="#3E000000"
-        android:textColorLink="@color/white"
-
-
-        android:textCursorDrawable="@drawable/input_field"
-        android:textIsSelectable="true"
-        app:layout_constraintBottom_toTopOf="@+id/editText11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText11"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="32dp"
-
-        android:alpha="0.4"
-        android:background="@drawable/input_field"
-        android:cursorVisible="true"
-        android:ems="10"
-
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textColor="#0A0A0A"
-        android:textColorHighlight="#3E000000"
-
-
-        android:textColorLink="@color/white"
-
-
-        android:textCursorDrawable="@drawable/input_field"
-        android:textIsSelectable="true"
-        app:layout_constraintBottom_toTopOf="@+id/editText12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText12"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="32dp"
-
-
-        android:alpha="0.4"
-        android:background="@drawable/input_field"
-        android:cursorVisible="true"
-        android:ems="10"
-
-        android:hint="Télephone"
-        android:inputType="phone"
-
-        android:textColor="#0A0A0A"
+        android:textColor="#000000"
         android:textColorHighlight="#75000000"
         android:textColorLink="@color/white"
         android:textCursorDrawable="@drawable/button"
         android:textIsSelectable="true"
-        app:layout_constraintBottom_toTopOf="@+id/editText13"
+        app:layout_constraintBottom_toTopOf="@+id/editText4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editText13"
+        android:id="@+id/editText4"
         android:layout_width="230dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
+
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
+
         android:ems="10"
-        android:hint="Mot de passe"
-        android:inputType="textPassword"
-        android:textColor="#0A0A0A"
-        android:textColorHighlight="#3E000000"
+        android:hint="@string/email"
+
+        android:inputType="textEmailAddress"
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
         android:textColorLink="@color/white"
-        android:textCursorDrawable="@drawable/input_field"
-        android:textIsSelectable="false"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
+        app:layout_constraintBottom_toTopOf="@+id/editText7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+
+        android:layout_marginBottom="50dp"
+        android:alpha="0.4"
+        android:background="@drawable/input_field"
+
+        android:cursorVisible="true"
+        android:ems="10"
+
+        android:hint="@string/mot_de_passe"
+        android:inputType="textPassword"
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+
+        android:layout_marginBottom="50dp"
+        android:alpha="0.4"
+
+        android:background="@drawable/input_field"
+
+        android:cursorVisible="true"
+        android:ems="10"
+        android:hint="Télephone"
+        android:inputType="phone"
+        android:textColor="#000000"
+        android:textColorHighlight="#75000000"
+        android:textColorLink="@color/white"
+        android:textCursorDrawable="@drawable/button"
+        android:textIsSelectable="true"
+        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button2"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/button2"
         android:text="S'inscrire"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -140,7 +118,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/backbtn2"
+        android:id="@+id/backbtn"
         android:layout_width="62dp"
         android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
