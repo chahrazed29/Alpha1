@@ -135,12 +135,16 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/retoure" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="172dp"
-        tools:layout_editor_absoluteY="10dp" />
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="340dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.328"
+        app:srcCompat="@drawable/logoandname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
