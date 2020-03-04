@@ -38,14 +38,11 @@
         android:layout_width="230dp"
         android:layout_height="40dp"
         android:layout_marginBottom="50dp"
-
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
-
         android:ems="10"
-        android:hint="@string/email"
-
+        android:hint="Adresse email"
         android:inputType="textEmailAddress"
         android:textColor="#000000"
         android:textColorHighlight="#75000000"
@@ -116,14 +113,21 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/button2"
         android:text="@string/s_inscrire"
+        android:textSize="19dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:fontFamily="@font/regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/backbtn"
-        android:layout_width="62dp"
-        android:layout_height="47dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
         android:clickable="true"
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,7 +135,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.002"
         app:srcCompat="@drawable/retoure" />
 
     <ImageView

@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.content.Intent;
+import android.widget.ImageView;
 
 public class LoginActivity extends AppCompatActivity {
 
     public TextView insecrireTextView;
+    ImageView backbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        backbutton=findViewById(R.id.backbtn);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 }

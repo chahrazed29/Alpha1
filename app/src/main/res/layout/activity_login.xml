@@ -43,22 +43,18 @@
         android:id="@+id/editTextEmail"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="280dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
-
         android:ems="10"
         android:hint="Adresse email"
         android:inputType="textEmailAddress"
-
         android:textColor="#000000"
         android:textColorHighlight="#75000000"
-
         android:textColorLink="@color/white"
         android:textCursorDrawable="@drawable/button"
         android:textIsSelectable="true"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,9 +120,12 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="62dp"
-        android:layout_height="47dp"
+        android:id="@+id/backbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
