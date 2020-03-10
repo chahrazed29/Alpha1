@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+<group android:checkableBehavior="single">
+
+    <item  android:id="@+id/nav_parametre"
+     android:title="Paramètre"
+        android:icon="@drawable/settings"></item>
+    <item  android:id="@+id/nav_deconnecter"
+        android:title="Se Déconnecter"
+        android:icon="@drawable/logout"></item>
+
+</group>
+    <item android:title="Plus" >
+        <menu >
+            <item android:id="@+id/partager"
+                android:icon="@drawable/share"
+                android:title="Partager"></item>
+            <item android:id="@+id/nouscontacter"
+                android:icon="@drawable/contacter"
+                android:title="Nous Contacter "></item>
+            <item android:id="@+id/apropos"
+                android:icon="@drawable/propos"
+                android:title="A propos  "></item>
+
+        </menu>
+    </item>
+
+
+
+</menu>

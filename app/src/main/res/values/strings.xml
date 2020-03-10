@@ -6,4 +6,7 @@
     <string name="todo">TODO</string>
     <string name="t_lephone">Télephone</string>
     <string name="s_inscrire">S\'inscrire</string>
+    <string name="navigation_drawer_open">open navigation drawer</string>
+    <string name="navigation_drawer_close">close navigation drawer</string>
+
 </resources>

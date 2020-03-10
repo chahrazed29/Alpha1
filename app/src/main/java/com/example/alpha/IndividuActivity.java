@@ -22,9 +22,11 @@ public class IndividuActivity extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
             }
         });
+
        /*  backbutton.findViewById(R.id.backbtn);
          backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
