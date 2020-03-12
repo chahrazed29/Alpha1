@@ -1,3 +1,5 @@
+package com.example.alpha;
+
 public abstract class Produit {
     private int idnum;
     private  String nom;

@@ -1,3 +1,5 @@
+package com.example.alpha;
+
 import java.util.Date;
 
 public class Message {

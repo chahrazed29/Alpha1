@@ -1,3 +1,5 @@
+package com.example.alpha;
+
 public class Annance extends Produit {
     private int idnum;
     //image

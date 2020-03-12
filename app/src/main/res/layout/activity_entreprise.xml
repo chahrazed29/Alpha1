@@ -12,7 +12,7 @@
         android:layout_width="230dp"
         android:layout_height="40dp"
 
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
@@ -38,7 +38,7 @@
         android:layout_width="230dp"
         android:layout_height="40dp"
 
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
 
@@ -61,47 +61,23 @@
         android:id="@+id/editText11"
         android:layout_width="230dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="32dp"
 
+        android:layout_marginBottom="50dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
-        android:ems="10"
 
+        android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="#0A0A0A"
+
+
         android:textColorHighlight="#3E000000"
 
 
         android:textColorLink="@color/white"
-
-
         android:textCursorDrawable="@drawable/input_field"
-        android:textIsSelectable="true"
-        app:layout_constraintBottom_toTopOf="@+id/editText12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText12"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="32dp"
-
-
-        android:alpha="0.4"
-        android:background="@drawable/input_field"
-        android:cursorVisible="true"
-        android:ems="10"
-
-        android:hint="Télephone"
-        android:inputType="phone"
-
-        android:textColor="#0A0A0A"
-        android:textColorHighlight="#75000000"
-        android:textColorLink="@color/white"
-        android:textCursorDrawable="@drawable/button"
         android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText13"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +87,7 @@
         android:id="@+id/editText13"
         android:layout_width="230dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"

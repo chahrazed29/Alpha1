@@ -11,15 +11,16 @@
         android:id="@+id/editText2"
         android:layout_width="230dp"
         android:layout_height="40dp"
+
         android:layout_marginBottom="50dp"
-
         android:alpha="0.4"
-        android:background="@drawable/input_field"
-        android:cursorVisible="true"
 
+        android:autofillHints=""
+        android:background="@drawable/input_field"
+
+        android:cursorVisible="true"
         android:ems="10"
         android:hint="@string/nom_d_utilisateur"
-
         android:inputType="textPersonName"
         android:textColor="#000000"
         android:textColorHighlight="#75000000"
@@ -28,10 +29,11 @@
         android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        android:autofillHints="" tools:targetApi="o" />
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/editText4"
@@ -43,24 +45,24 @@
         android:cursorVisible="true"
         android:ems="10"
         android:hint="Adresse email"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:textColor="#000000"
         android:textColorHighlight="#75000000"
         android:textColorLink="@color/white"
         android:textCursorDrawable="@drawable/button"
         android:textIsSelectable="true"
-        app:layout_constraintBottom_toTopOf="@+id/editText7"
+        app:layout_constraintBottom_toTopOf="@+id/editText5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText5"
         android:layout_width="230dp"
         android:layout_height="40dp"
 
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="50dp"
 
         android:alpha="0.4"
         android:background="@drawable/input_field"
@@ -77,48 +79,23 @@
         android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-
-        android:layout_marginBottom="50dp"
-
-        android:alpha="0.4"
-
-        android:autofillHints=""
-        android:background="@drawable/input_field"
-        android:cursorVisible="true"
-        android:ems="10"
-        android:hint="@string/t_lephone"
-        android:inputType="phone"
-        android:textColor="#000000"
-        android:textColorHighlight="#75000000"
-        android:textColorLink="@color/white"
-        android:textCursorDrawable="@drawable/button"
-        android:textIsSelectable="true"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:targetApi="o" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="150dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="96dp"
         android:background="@drawable/button2"
+        android:fontFamily="@font/regular"
         android:text="@string/s_inscrire"
-        android:textSize="19dp"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:fontFamily="@font/regular"
+        android:textSize="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
