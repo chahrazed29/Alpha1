@@ -215,7 +215,7 @@
         app:srcCompat="@drawable/notification" />
 
     <ImageView
-        android:id="@+id/imageView35"
+        android:id="@+id/btnMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
