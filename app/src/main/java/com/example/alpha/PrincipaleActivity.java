@@ -17,7 +17,7 @@ import static com.example.alpha.R.string.navigation_drawer_open;
 public class PrincipaleActivity extends AppCompatActivity {
     ImageView menubutton;
     private DrawerLayout drawer;
-   //ActionBar.NavigationMode navigationModeView ;
+   ActionBar.NavigationMode navigationModeView ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class PrincipaleActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer  ,navigation_drawer_open, navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        //navigationModeView=findViewById(R.id.nav__view);
+        navigationModeView=findViewById(R.id.nav__view);
         menubutton=findViewById(R.id.imageView37);
         menubutton.setOnClickListener(new View.OnClickListener() {
             @Override
