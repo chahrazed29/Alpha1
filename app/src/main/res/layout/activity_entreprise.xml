@@ -12,15 +12,19 @@
         android:layout_width="230dp"
         android:layout_height="40dp"
 
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+
+
         android:layout_marginBottom="50dp"
         android:alpha="0.4"
+
         android:background="@drawable/input_field"
         android:cursorVisible="true"
-
-
         android:ems="10"
         android:hint="Nom Entreprise"
-
         android:inputType="textPersonName"
         android:textColor="#0A0A0A"
         android:textColorHighlight="#3E000000"
@@ -38,55 +42,73 @@
         android:layout_width="230dp"
         android:layout_height="40dp"
 
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="50dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
-
         android:cursorVisible="true"
         android:ems="10"
         android:hint="N registre de commerce"
+
+
         android:inputType="number"
         android:textColor="#0A0A0A"
         android:textColorHighlight="#3E000000"
         android:textColorLink="@color/white"
-
-
         android:textCursorDrawable="@drawable/input_field"
         android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText11"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText11"
         android:layout_width="230dp"
         android:layout_height="40dp"
 
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+
         android:layout_marginBottom="50dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
         android:cursorVisible="true"
 
+
         android:ems="10"
+
+
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="#0A0A0A"
-
-
         android:textColorHighlight="#3E000000"
-
-
         android:textColorLink="@color/white"
         android:textCursorDrawable="@drawable/input_field"
         android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@+id/editText13"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText13"
         android:layout_width="230dp"
         android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="50dp"
         android:alpha="0.4"
         android:background="@drawable/input_field"
@@ -101,23 +123,33 @@
         android:textIsSelectable="false"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/button2"
+        android:fontFamily="@font/regular"
         android:text="S'inscrire"
-        android:textSize="19dp"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:fontFamily="@font/regular"
+        android:textSize="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/backbtn2"
@@ -138,7 +170,11 @@
         android:id="@+id/imageView5"
         android:layout_width="340dp"
         android:layout_height="164dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
         app:layout_constraintBottom_toTopOf="@+id/editText8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"

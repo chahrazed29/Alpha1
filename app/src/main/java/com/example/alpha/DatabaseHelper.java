@@ -1,15 +1,15 @@
 package com.example.alpha;
 
 import android.content.Context;
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String TAG = "DBHelper";
     private static final String DATA_BASE = "Recyclini.db";
 
     //individue table
@@ -28,12 +28,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ENTREPRISE_ID_NUM ="idnum";
     public static final String ENTREPRISE_USER_NAME="username";
     public static final String ENTREPRISE_PHONE="phone";
-    public static final String ENTREPRISE_NUMRC="numrc";
     public static final String ENTREPRISE_NRC="numrc";
     public static final String ENTREPRISE_EMAIL="email";
     public static final String ENTREPRISE_PASS_WORD="password";
     public static final String CREATE_ENTREPRISE="CREATE TABLE "+ENTREPRISE_TABLE+" ( "+ENTREPRISE_ID_NUM+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +ENTREPRISE_USER_NAME+" TEXT NOT NULL , "+ENTREPRISE_PHONE+" INTEGER , "+ENTREPRISE_NUMRC+" INTEGER NOT NULL , "+ENTREPRISE_NRC+" INTEGER NOT NULL , "+ENTREPRISE_EMAIL+" TEXT UNIQUE , "+ENTREPRISE_PASS_WORD+" TEXT NOT NULL );";
+            +ENTREPRISE_USER_NAME+" TEXT NOT NULL , "+ENTREPRISE_PHONE+" INTEGER , "+ENTREPRISE_NRC+" INTEGER NOT NULL , "+ENTREPRISE_EMAIL+" TEXT UNIQUE , "+ENTREPRISE_PASS_WORD+" TEXT NOT NULL );";
 
 
     //annonce table
@@ -52,8 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(@Nullable Context context) {
 
-        super(context,DATA_BASE, null,1);
-        //SQLiteDatabase db=this.getWritableDatabase();
+        super(context,DATA_BASE, null,2);
+
     }
 
     @Override
@@ -66,14 +65,147 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(TAG,
-                "Upgrading the database from version " + oldVersion + " to "+ newVersion);
-        db.execSQL("DROP TABLE IF EXISTS "+INDIVIDUE_TABLE);
+
+       db.execSQL("DROP TABLE IF EXISTS "+INDIVIDUE_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+ENTREPRISE_TABLE );
         db.execSQL("DROP TABLE IF EXISTS "+ANNONCE_TABLE );
         onCreate(db);
 
     }
+    public void addIndividue(Individue individue){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(INDIVIDUE_USER_NAME, individue.getUsername());
+        values.put(INDIVIDUE_EMAIL, individue.getEmail());
+        values.put(INDIVIDUE_PASS_WORD, individue.getPassword());
 
+        db.insert(INDIVIDUE_TABLE, null, values);
+        db.close();
+    }
+    public void addEntreprise(Entreprise entreprise){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ENTREPRISE_USER_NAME, entreprise.getUsername());
+        values.put(ENTREPRISE_NRC, entreprise.getNumrc());
+        values.put(ENTREPRISE_EMAIL,entreprise.getEmail());
+        values.put(ENTREPRISE_PASS_WORD, entreprise.getPassword());
+
+        db.insert(ENTREPRISE_TABLE, null, values);
+        db.close();
+    }
+
+    public boolean checkIndividueEmail(String email){
+        String[] columns = {
+                INDIVIDUE_ID_NUM
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = INDIVIDUE_EMAIL + " = ?";
+        String[] selectionArgs = { email };
+
+        Cursor cursor = db.query(INDIVIDUE_TABLE,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkEntrepriseEmail(String email){
+        String[] columns = {
+                ENTREPRISE_ID_NUM
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = ENTREPRISE_EMAIL + " = ?";
+        String[] selectionArgs = { email };
+
+        Cursor cursor = db.query(ENTREPRISE_TABLE,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkUserEmail(String email){
+
+        if((checkIndividueEmail(email)==true)||(checkEntrepriseEmail(email)==true)) return true ;
+
+        return false;
+    }
+
+    public boolean checkIndividue(String email, String password){
+        String[] columns = {
+                INDIVIDUE_ID_NUM
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = INDIVIDUE_EMAIL + " =?" + " AND " + INDIVIDUE_PASS_WORD+ " =?";
+        String[] selectionArgs = { email, password };
+
+        Cursor cursor = db.query(INDIVIDUE_TABLE,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean checkEntreprise(String email, String password){
+        String[] columns = {
+                ENTREPRISE_ID_NUM
+        };
+        SQLiteDatabase db =this.getReadableDatabase();
+        String selection = ENTREPRISE_EMAIL + " = ?" + " AND " + ENTREPRISE_PASS_WORD+ " =?";
+        String[] selectionArgs = { email, password };
+
+        Cursor cursor = db.query(ENTREPRISE_TABLE,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkUser(String email, String password){
+
+        if((checkIndividue(email,password)==true)||(checkEntreprise(email,password)==true)) return true ;
+
+        return false;
+    }
 
 }

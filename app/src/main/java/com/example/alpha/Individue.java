@@ -4,7 +4,7 @@ public class Individue extends Utilisateur {
 
 
 
-    public Individue( String nomUtilisateur, int telephone, String email, String mdp, String nom, String prenom) {
+    public Individue( String nomUtilisateur, int telephone, String email, String mdp) {
         super( nomUtilisateur, telephone, email, mdp);
 
     }

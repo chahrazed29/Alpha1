@@ -12,7 +12,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.*;
-import android.support.constraint.solver.widgets.*;
+
 
 import android.util.Log;
 import android.widget.Toast;

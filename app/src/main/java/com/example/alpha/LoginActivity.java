@@ -5,47 +5,87 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
-import android.widget.ImageView;
+
+import android.widget.Toast;
+
+
+
 
 public class LoginActivity extends AppCompatActivity {
 
-    public TextView insecrireTextView;
-    ImageView backbutton;
-    Button button;
+
+
+
+     EditText EditTextEmail;
+     EditText EditTextPassword;
+
+     Button ButtonLogin;
+
+     TextView textViewLinkRegister;
+
+  InputValidation inputValidation;
+    DatabaseHelper db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        insecrireTextView=(TextView)findViewById(R.id.textInscrire2);
-        insecrireTextView.setOnClickListener(new View.OnClickListener() {
+        db = new DatabaseHelper(this);
+        inputValidation=new InputValidation(this);
+
+        ButtonLogin = (Button) findViewById(R.id.button);
+        textViewLinkRegister = (TextView) findViewById(R.id.textInscrire2);
+
+        textViewLinkRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(LoginActivity.this,IndEntActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                Intent registerIntent = new Intent(LoginActivity.this,IndEntActivity.class);
+                startActivity(registerIntent);
             }
         });
-        button=(Button)findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        EditTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        EditTextPassword = (EditText) findViewById(R.id.editTextMdp);
+        ButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(LoginActivity.this,PrincipaleActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                if (verification()){
+                    String email = EditTextEmail.getText().toString().trim();
+                    String pwd = EditTextPassword.getText().toString().trim();
+                    Boolean res = db.checkIndividue(email,pwd);
+                    if(res == true)
+                    {
+                    Intent HomePage = new Intent(LoginActivity.this,PrincipaleActivity.class);
+                    startActivity(HomePage);
+                    }
+                    else
+                    {
+                    Toast.makeText(LoginActivity.this,"Vérifiez votre Informations",Toast.LENGTH_SHORT).show();
+
+                    }
+                }else{
+                    Toast.makeText(LoginActivity.this,"Vérifiez votre Informations",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        backbutton=findViewById(R.id.backbtn);
-        backbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
 
 
     }
+
+    public boolean verification(){
+        if ((!inputValidation.isInputEditTextFilled(EditTextEmail))||(!inputValidation.isInputEditTextEmail(EditTextEmail))||(!inputValidation.isInputEditTextFilled(EditTextPassword))) {
+            return false;
+        }
+
+        return true ;
+
+    }
+
+
 }
