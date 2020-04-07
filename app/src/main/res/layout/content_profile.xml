@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ProfileActivity"
+    tools:showIn="@layout/activity_profile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="75dp"
+                android:src="@drawable/ic_nommodf"></ImageView>
+
+            <EditText
+                android:id="@+id/nom_modf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="70dp"
+                android:ems="10"
+                android:hint="@string/nom_d_utilisateur"
+                android:inputType="textPersonName"></EditText>
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/ic_email_modf"></ImageView>
+
+    <EditText
+        android:id="@+id/email_modf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="140dp"
+        android:ems="10"
+        android:hapticFeedbackEnabled="false"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"></EditText>
+</LinearLayout>
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+     <ImageView
+         android:layout_width="75dp"
+         android:layout_height="30dp"
+         android:src="@drawable/ic_phone_modf"
+         android:layout_marginTop="220dp"></ImageView>
+
+     <EditText
+         android:id="@+id/tlph_modf"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="25dp"
+         android:layout_marginTop="210dp"
+         android:ems="10"
+         android:hint="Téléphone"
+         android:inputType="phone|number"></EditText>
+ </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_desc_modf"
+        android:layout_marginTop="290dp"
+        ></ImageView>
+
+    <EditText
+        android:id="@+id/descr_modf"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="280dp"
+        android:ems="10"
+        android:hint="h"
+        android:text=" "
+        tools:ignore="InvalidId" />
+</LinearLayout>
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapview"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="350dp"
+            android:layout_marginBottom="5dp"
+            >
+
+        </com.google.android.gms.maps.MapView>
+
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,14 +1,76 @@
 package com.example.alpha;
+import android.app.Dialog;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+import static com.example.alpha.R.string.navigation_drawer_close;
+import static com.example.alpha.R.string.navigation_drawer_open;
 
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 
-public class PrincipaleActivity extends AppCompatActivity {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
+public class PrincipaleActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+    ImageView imgprofile;
+    public static int id;
+    private static final int ERROR_DIALOG_REQUEST = 9001;
+    private DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principale);
+        drawer=findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer  ,navigation_drawer_open, navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        imgprofile=  findViewById(R.id.profile);
+        imgprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(PrincipaleActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+        @Override
+        public void onBackPressed() {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            }
+            else{
+                super.onBackPressed();}}
+
+        public boolean isServicesOK(){
+            Log.d(TAG, "isServicesOK: checking google services version");
+
+            int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(PrincipaleActivity.this);
+
+            if(available == ConnectionResult.SUCCESS){
+                //everything is fine and the user can make map requests
+                Log.d(TAG, "isServicesOK: Google Play Services is working");
+                return true;
+            }
+            else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+                //an error occured but we can resolve it
+                Log.d(TAG, "isServicesOK: an error occured but we can fix it");
+                Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(PrincipaleActivity.this, available, ERROR_DIALOG_REQUEST);
+                dialog.show();
+            }else{
+                Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
+            }
+            return false;
+        }
+
+
 }

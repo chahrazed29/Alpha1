@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity  {
 
 
 
@@ -31,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -61,7 +63,8 @@ public class LoginActivity extends AppCompatActivity {
                     {
                     Intent HomePage = new Intent(LoginActivity.this,PrincipaleActivity.class);
                     startActivity(HomePage);
-                    }
+
+                  finish(); }
                     else
                     {
                     Toast.makeText(LoginActivity.this,"Vérifiez votre Informations",Toast.LENGTH_SHORT).show();

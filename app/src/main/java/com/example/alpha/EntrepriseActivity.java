@@ -51,7 +51,9 @@ public class EntrepriseActivity extends AppCompatActivity {
                     if(!mydb.checkUserEmail(email)){
                         creatEntreprise();
                         Intent intent=new Intent(EntrepriseActivity.this,PrincipaleActivity.class);
-                        startActivity(intent);}
+                        startActivity(intent);
+                        finish();
+                    }
                     else{
                         Toast.makeText(EntrepriseActivity.this,"Email déjà utiliser",Toast.LENGTH_SHORT).show();
                     }}

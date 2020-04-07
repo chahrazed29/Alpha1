@@ -21,14 +21,16 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="102dp"
         android:layout_height="29dp"
+        android:duplicateParentState="true"
+        android:fadeScrollbars="true"
         android:indeterminate="true"
-        android:outlineSpotShadowColor="@color/bleu"
         android:outlineAmbientShadowColor="@color/bleu"
+        android:outlineSpotShadowColor="@color/bleu"
+        android:progressDrawable="@drawable/color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-        android:progressDrawable="@drawable/color"/>
+        app:layout_constraintVertical_bias="0.75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

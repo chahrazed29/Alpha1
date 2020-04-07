@@ -2,6 +2,7 @@ package com.example.alpha;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Button loginButton;
     public TextView insecrireTextView;
+    private Object LoginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,IndEntActivity.class);
                 startActivity(intent);
+                finishFromChild((Activity) LoginActivity);
+
             }
         });
 

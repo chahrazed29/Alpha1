@@ -22,6 +22,8 @@ public class  IndEntActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(IndEntActivity.this, IndividuActivity.class);
                 startActivity(intent);
+
+
             }
         });
 

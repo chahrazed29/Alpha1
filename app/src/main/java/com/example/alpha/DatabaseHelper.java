@@ -12,15 +12,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATA_BASE = "Recyclini.db";
 
+    public static final String LOCATION_ID = "id";
+    /* latitude */
+    public static final String LOCATION_LAT = "lat";
+
+    /** longitude*/
+    public static final String LOCATION_LNG = "lng";
+
+    /* zoom level of map*/
+    public static final String LOCATION_ZOOM = "zoom";
+
+    public static final String LOCATION_TABLE = "locations";
+    public  static final String CREATE_LOCATION ="CREATE TABLE "+LOCATION_TABLE+ " ( " +
+            LOCATION_ID + " integer primary key autoincrement , " +
+            LOCATION_LNG + " double , " +
+            LOCATION_LAT + " double , " +
+            LOCATION_ZOOM + " text " +
+            " ) ";
     //individue table
     public static final String INDIVIDUE_TABLE = "individue";
     public static final String INDIVIDUE_ID_NUM ="idnum";
     public static final String INDIVIDUE_USER_NAME="username";
     public static final String INDIVIDUE_PHONE="phone";
     public static final String INDIVIDUE_EMAIL="email";
+    public  static  final  String INDIVIDUE_DESCRIPTION="description";
     public static final String INDIVIDUE_PASS_WORD="password";
+    public static final String INDIVIDUE_IMAGE="image";
+
     public static final String CREATE_INDIVIDUE="CREATE TABLE "+INDIVIDUE_TABLE+" ( "+INDIVIDUE_ID_NUM+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +INDIVIDUE_USER_NAME+" TEXT NOT NULL , "+INDIVIDUE_PHONE+" INTEGER , "+INDIVIDUE_EMAIL+" TEXT UNIQUE , "+INDIVIDUE_PASS_WORD+" TEXT NOT NULL );";
+            +INDIVIDUE_USER_NAME+" TEXT NOT NULL , "+INDIVIDUE_PHONE+" INTEGER , "+INDIVIDUE_EMAIL+" TEXT UNIQUE , "+INDIVIDUE_PASS_WORD+" TEXT NOT NULL  , "+INDIVIDUE_DESCRIPTION+" TEXT,"+INDIVIDUE_IMAGE+"BLOB,"+LOCATION_ID+" INTEGER,"
+  + " CONSTRAINT fk_location FOREIGN KEY ("+LOCATION_ID+") REFERENCES "+ LOCATION_TABLE +"("+LOCATION_ID+"));";
 
 
     //entreprise table
@@ -49,9 +70,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             +ANNONCE_TITLE+" TEXT NOT NULL ,"+ANNONCE_TYPE+" TEXT NOT NULL , "+ANNONCE_QTE+" TEXT NOT NULL , "+ANNONCE_PRICE+" REAL NOT NULL , "
             +ANNONCE_DESC+" TEXT , "+ANNONCE_USER+" TEXT NOT NULL , "+ANNONCE_ID_USER+" INTEGER NOT NULL , CONSTRAINT annonce_cons CHECK ( "+ANNONCE_ID_USER+" IN ('individue','entreprise')) );";
 
+
+
     public DatabaseHelper(@Nullable Context context) {
 
-        super(context,DATA_BASE, null,2);
+        super(context,DATA_BASE, null,4);
 
     }
 
@@ -61,6 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_INDIVIDUE);
         db.execSQL(CREATE_ENTREPRISE);
         db.execSQL(CREATE_ANNONCE);
+        db.execSQL(CREATE_LOCATION);
     }
 
     @Override
@@ -206,6 +230,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if((checkIndividue(email,password)==true)||(checkEntreprise(email,password)==true)) return true ;
 
         return false;
+    } public boolean updateData(String id,String nom,String phone,String email,String desc) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(INDIVIDUE_ID_NUM,id);
+        contentValues.put(INDIVIDUE_USER_NAME,nom);
+        contentValues.put(INDIVIDUE_PHONE,phone);
+        contentValues.put(INDIVIDUE_DESCRIPTION,desc);
+        db.update(INDIVIDUE_TABLE, contentValues, "INDIVIDUE_ID_NUM = ?",new String[] { id });
+        return true;
+    }
+
+
+    public boolean addimage (String id ,byte [] image){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(INDIVIDUE_ID_NUM,id);
+        contentValues.put(INDIVIDUE_IMAGE,image);
+        db.update(INDIVIDUE_TABLE, contentValues, "INDIVIDUE_ID_NUM = ?",new String[] { id });
+
+       return true;
+    }
+    public boolean insertloc2 (String id ,String lg,String lat, String zoom){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LOCATION_ID,id);
+        contentValues.put(LOCATION_LNG,lg);
+        contentValues.put(LOCATION_LAT,lat);
+        contentValues.put(LOCATION_ZOOM,zoom);
+        db.update(INDIVIDUE_TABLE, contentValues, "LOCATION_ID= ?",new String[] { id });
+        return true;
+    }
+    /** Inserts a new location to the table locations */
+    public long insertloc1(ContentValues contentValues){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long rowID = db.insert(LOCATION_TABLE, null, contentValues);
+        return rowID;
+    }
+
+    /** Deletes all locations from the table */
+    public int del(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int cnt = db.delete(LOCATION_TABLE, null , null);
+        return cnt;
+    }
+
+    /** Returns all the locations from the table */
+    public Cursor getAllLocations(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        return db.query(LOCATION_TABLE, new String[] { LOCATION_ID, LOCATION_LAT , LOCATION_LNG, LOCATION_ZOOM } , null, null, null, null, null);
     }
 
 }

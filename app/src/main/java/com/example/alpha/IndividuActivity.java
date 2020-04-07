@@ -4,6 +4,7 @@ package com.example.alpha;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -16,10 +17,10 @@ import android.widget.Toast;
 
 
 public class IndividuActivity extends AppCompatActivity {
- ImageView backbutton;
- EditText etUsername,etEmail,etPassword;
- DatabaseHelper mydb;
- SQLiteDatabase db;
+    ImageView backbutton;
+    EditText etUsername, etEmail, etPassword;
+    DatabaseHelper mydb;
+    SQLiteDatabase db;
     Button button;
     InputValidation inputValidation;
 
@@ -27,8 +28,8 @@ public class IndividuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individu);
-        inputValidation=new InputValidation(this);
-        backbutton=findViewById(R.id.backbtn);
+        inputValidation = new InputValidation(this);
+        backbutton = findViewById(R.id.backbtn);
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,21 +42,25 @@ public class IndividuActivity extends AppCompatActivity {
         etUsername = (EditText) findViewById(R.id.editText2);
         etEmail = (EditText) findViewById(R.id.editText4);
         etPassword = (EditText) findViewById(R.id.editText5);
-        button=(Button)findViewById(R.id.button2);
+        button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(verification()){
+                if (verification()) {
                     String email = etEmail.getText().toString().trim();
-                    if(!mydb.checkUserEmail(email)){
-                    creatIndividue();
-                    Intent intent=new Intent(IndividuActivity.this,PrincipaleActivity.class);
-                    startActivity(intent);}
-                    else{
-                    Toast.makeText(IndividuActivity.this,"Email déjà utiliser",Toast.LENGTH_SHORT).show();
+                    if (!mydb.checkUserEmail(email)) {
+                        creatIndividue();
+
+                        Intent intent = new Intent(IndividuActivity.this, PrincipaleActivity.class);
+                        ProfileActivity.getid=getid(email);
+                        startActivity(intent);
+
+                        finish();
+                    } else {
+                        Toast.makeText(IndividuActivity.this, "Email déjà utiliser", Toast.LENGTH_SHORT).show();
                     }
-            }else{
-                    Toast.makeText(IndividuActivity.this,"Vérifiez votre Informations",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(IndividuActivity.this, "Vérifiez votre Informations", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -66,8 +71,25 @@ public class IndividuActivity extends AppCompatActivity {
         etPassword=(EditText)findViewById(R.id.editText5);*/
 
 
-
     }
+
+    public int getid(String email) {
+        String query = "SELECT " + mydb.INDIVIDUE_ID_NUM + "FROM " + mydb.INDIVIDUE_TABLE + " WHERE "
+                + mydb.INDIVIDUE_EMAIL + " = '" + email + "'";
+        SQLiteDatabase db = mydb.getReadableDatabase();
+        Cursor res = db.rawQuery(query, null);
+        if (res != null) {
+            if (res.moveToFirst()) {
+                do {
+                    return Integer.parseInt(res.getString(res.getColumnIndex(mydb.INDIVIDUE_ID_NUM))); // if your column name is rowid then replace id with rowid
+                } while (res.moveToNext());
+            }
+        } else {
+            Toast.makeText(getBaseContext(), "cursor is null", Toast.LENGTH_LONG).show();
+
+          }    return -1;
+    }
+
 
     public void creatIndividue(){
 
