@@ -1,8 +1,12 @@
 package com.example.alpha;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Instrumentation;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -24,8 +28,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +42,8 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,8 +58,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCallback {
+//implements OnMapReadyCallback
+public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCallback  {
     private static final String TAG = "ProfileActivity";
     View view;
     Bitmap yourSelectedImage;
@@ -77,125 +82,147 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
     SQLiteDatabase db;
     double  lg;
     double  lat;
+    Button btnch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getLocationPermission();
-        mydb = new DatabaseHelper(this);
-        etnomutl = (EditText) findViewById(R.id.nom_modf);
-        etemail = (EditText) findViewById(R.id.email_modf);
-        etphone = (EditText) findViewById(R.id.tlph_modf);
-        etdesc = (EditText) findViewById(R.id.descr_modf);
-        photobtn=findViewById(R.id.photo_modf);
-        photobtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                captureFromCameraandgallery();
-            }
-        });
         imageView=findViewById(R.id.profil_photo);
-        retoure.findViewById(R.id.backbtn3);
-        retoure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                modfIndividue();
-                finish();
-            }
-        });
+        mydb = new DatabaseHelper(this);
+        etnomutl = findViewById(R.id.nom_modf);
+        etemail =  findViewById(R.id.email_modf);
+        etphone =  findViewById(R.id.tlph_modf);
+        etdesc =  findViewById(R.id.descr_modf);
+        photobtn=findViewById(R.id.photo_modf);
+   mapview=findViewById(R.id.MAPview);
+initMap();
+btnch=findViewById(R.id.changermap);
+ btnch.setOnClickListener(new View.OnClickListener() {
+     @Override
+     public void onClick(View v) {
 
-        Intent intent = new Intent(ProfileActivity.this, PrincipaleActivity.class);
-        startActivity(intent);
+         getLocationPermission();
+     }
+ });
+ //mapview.setOnClickListener(new View.OnClickListener() {
+  //   @Override
+  //  public void onClick(View v) {
+       // getLocationPermission();
+        // initMap();
+       //  getDeviceLocation();
+   //  }
+ // });
+
+     photobtn.setOnClickListener(new View.OnClickListener() {
+         @Override
+           public void onClick(View v) {
+          // captureFromCameraandgallery();
+             selectImage(ProfileActivity.this);
+          }
+     });
+
+     //  retoure.findViewById(R.id.backbtn3);
+     /*  retoure.setOnClickListener(new View.OnClickListener() {
+          @Override
+        public void onClick(View v) {
+          //  modfIndividue();
+             Intent intent = new Intent(ProfileActivity.this, PrincipaleActivity.class);
+            startActivity(intent);     finish();
+         }
+     });*/
 
 
-    }
-    private String cameraFilePath;
-    private File createImageFile() throws IOException {
+
+
+   }
+   // private String cameraFilePath;
+   /* private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        //This is the directory in which the file will be created. This is the default location of Camera photos
-        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DCIM), "Camera");
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-        // Save a file: path for using again
-        cameraFilePath = "file://" + image.getAbsolutePath();
-        return image;
-    }
+       @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+       String imageFileName = "JPEG_" + timeStamp + "_";
+      //This is the directory in which the file will be created. This is the default location of Camera photos
+      File storageDir = new File(Environment.getExternalStoragePublicDirectory(
+               Environment.DIRECTORY_DCIM), "Camera");
+       File image = File.createTempFile(
+               imageFileName,  //* prefix *//*
+               ".jpg",         //* suffix *//*
+               storageDir      //* directory *//*
+      );
 
-    @Override
+       // Save a file: path for using again
+       cameraFilePath = "file://" + image.getAbsolutePath();
+      return image;
+  }*/
+/*
+ @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
         // Result code is RESULT_OK only if the user selects an Image
-
-        if (resultCode == Activity.RESULT_OK)
+      if (resultCode == Activity.RESULT_OK) {
             switch (requestCode){
                 case GALLERY_REQUEST_CODE:
                     //data.getData return the content URI for the selected Image
-                    Uri selectedImage = data.getData();
-                    InputStream imageStream = null;
-                    try {
-                        imageStream = getContentResolver().openInputStream(selectedImage);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                 yourSelectedImage  = BitmapFactory.decodeStream(imageStream);
-                                          modfimg();
-                    String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                   Uri selectedImage = data.getData();
+                  // InputStream imageStream = null;
+                  //// try {
+                 ///     imageStream = getContentResolver().openInputStream(selectedImage);
+             //   } catch (FileNotFoundException e) {
+               ////     e.printStackTrace();
+            //     }
+            //  yourSelectedImage  = BitmapFactory.decodeStream(imageStream);
+                                     //  modfimg();
+                     String[] filePathColumn = { MediaStore.Images.Media.DATA };
                     // Get the cursor
                     Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                    // Move to first row
-                    cursor.moveToFirst();
+                   // Move to first row
+                   cursor.moveToFirst();
                     //Get the column index of MediaStore.Images.Media.DATA
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    //Gets the String value in the column
-                    String imgDecodableString = cursor.getString(columnIndex);
-                    cursor.close();
-                    // Set the Image in ImageView after decoding the String
-                    imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
-                    break;
-                case CAMERA_REQUEST_CODE:
+                   //Gets the String value in the column
+                  String imgDecodableString = cursor.getString(columnIndex);
+                  cursor.close();
+                  // Set the Image in ImageView after decoding the String
+                  imageView.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
+                  break;
+                  ///case CAMERA_REQUEST_CODE:
 
-                    imageView.setImageURI(Uri.parse(cameraFilePath));
+                   //imageView.setImageURI(Uri.parse(cameraFilePath));
 
-                    break;
+                   //// break;
 
-            }
-    }
+          }
+          }
+   }*/
 
-    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-        return outputStream.toByteArray();
-    }
-
-    private void captureFromCameraandgallery() {
-        try {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+//        return outputStream.toByteArray();
+//    }
+//
+   /* private void captureFromCameraandgallery() {
+      //  try {
+         //   Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             //Create an Intent with action as ACTION_PICK
-            Intent intent2 = new Intent(Intent.ACTION_PICK);
-            // Sets the type as image/*. This ensures only components of type image are selected
-            intent2.setType("image/*");
-            //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
-            String[] mimeTypes = {"image/jpeg", "image/png"};
-            intent2.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+           Intent intent2 = new Intent(Intent.ACTION_PICK);
+           // Sets the type as image/*. This ensures only components of type image are selected
+           intent2.setType("image/*");
+           //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+        String[] mimeTypes = {"image/jpeg", "image/png"};
+          intent2.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
 
 
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", createImageFile()));
-
-// Launching the Intent
-startActivityForResult(intent, CAMERA_REQUEST_CODE);
-            startActivityForResult(intent2, GALLERY_REQUEST_CODE);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-     //   private void pickFromGallery () {
+         //  intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", createImageFile()));
+//
+//// Launching the Intent
+//startActivityForResult(intent, CAMERA_REQUEST_CODE);
+startActivityForResult(intent2, GALLERY_REQUEST_CODE);
+     //   } catch (IOException ex) {
+     //      ex.printStackTrace();
+   //   }
+       }*/
+     /*  private void pickFromGallery () {
             //Create an Intent with action as ACTION_PICK
        //     Intent intent = new Intent(Intent.ACTION_PICK);
             // Sets the type as image/*. This ensures only components of type image are selected
@@ -206,7 +233,7 @@ startActivityForResult(intent, CAMERA_REQUEST_CODE);
             // Launching the Intent
          //   startActivityForResult(intent, GALLERY_REQUEST_CODE);
        // }
-     public void modfmap () {
+    /* public void modfmap () {
          String latit =String.valueOf(lat);
          String longt =String.valueOf(lg);
          String id = String.valueOf(getid);
@@ -253,18 +280,19 @@ String z=String.valueOf(DEFAULT_ZOOM);
             }
         }
 
-
+*/
         private void initMap () {
             Log.d(TAG, "initMap: initialisation du map");
-            mapview = findViewById(R.id.mapview);
-            if (mapview != null) {
-                mapview.onCreate(null);
-                mapview.onResume();
+          if (mapview != null) {
+
+              mapview.onCreate(null);
+              mapview.onResume();
                 mapview.getMapAsync(ProfileActivity.this);
-            }
+
+           }
         }
 
-        private void getDeviceLocation () {
+       private void getDeviceLocation () {
             Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
 
@@ -282,7 +310,7 @@ String z=String.valueOf(DEFAULT_ZOOM);
                                 lg=currentLocation.getLongitude();
                                  lat=currentLocation.getLatitude();
                                 moveCamera(new LatLng(lat, lg),DEFAULT_ZOOM);
-                                   modfmap();
+                                //   modfmap();
                             } else {
                                 Log.d(TAG, "onComplete: current location is null");
                                 Toast.makeText(ProfileActivity.this, "impossible d'avoir la localisation  ", Toast.LENGTH_SHORT).show();
@@ -301,7 +329,7 @@ String z=String.valueOf(DEFAULT_ZOOM);
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
         }
 
-        private void getLocationPermission () {
+       private void getLocationPermission () {
             Log.d(TAG, "getLocationPermission: getting location permissions");
             String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -311,7 +339,7 @@ String z=String.valueOf(DEFAULT_ZOOM);
                 if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                         COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionsGranted = true;
-                    initMap();
+                   initMap();
                 } else {
                     ActivityCompat.requestPermissions(this,
                             permissions,
@@ -362,9 +390,90 @@ String z=String.valueOf(DEFAULT_ZOOM);
                     return;
                 }
                 map.setMyLocationEnabled(true);
-                // map.getUiSettings().setMyLocationButtonEnabled(false);
+                map.getUiSettings().setMyLocationButtonEnabled(false);
 
+           }
+        }
+    private void selectImage(Context context) {
+        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Choose your profile picture");
+
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+
+                if (options[item].equals("Prendre Une Photo")) {
+                    Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(takePicture, 0);
+
+                } else if (options[item].equals("Choisir Une Photo")) {
+                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
+
+                } else if (options[item].equals("Annuler")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                case 0:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+                        imageView.setImageBitmap(selectedImage);
+                    }
+
+                    break;
+                case 1:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Uri selectedImage = data.getData();
+                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                        if (selectedImage != null) {
+                            Cursor cursor = getContentResolver().query(selectedImage,
+                                    filePathColumn, null, null, null);
+                            if (cursor != null) {
+                                cursor.moveToFirst();
+
+                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                                String picturePath = cursor.getString(columnIndex);
+                                imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                cursor.close();
+                            }
+                        }
+
+                    }
+                    break;
             }
         }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_image_capture, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     }

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ProfileActivity" >
-
+    tools:context=".ScrollingActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -23,48 +22,26 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
-<!--
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />  -->
-    <ImageView
-        android:id="@+id/profil_photo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-           app:layout_anchor="@+id/app_bar"
-           app:layout_anchorGravity="center" >
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </ImageView>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <ImageView
-            android:id="@+id/backbtn3"
-            android:src="@drawable/retoure"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp">
+    <include layout="@layout/content_scrolling" />
 
-        </ImageView>
-
-
-
-      <ImageView
-    android:layout_marginTop="1dp"
-    android:layout_marginLeft="350dp"
-    android:layout_width="40dp"
-    android:layout_height="70dp"
-    android:id="@+id/photo_modf"
-   android:src="@drawable/ic_photo_modf" ></ImageView>
-
-
-
-       </com.google.android.material.appbar.CollapsingToolbarLayout>
-   </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_profile" />
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

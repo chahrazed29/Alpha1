@@ -52,7 +52,7 @@ public class IndividuActivity extends AppCompatActivity {
                         creatIndividue();
 
                         Intent intent = new Intent(IndividuActivity.this, PrincipaleActivity.class);
-                        ProfileActivity.getid=getid(email);
+                             
                         startActivity(intent);
 
                         finish();
