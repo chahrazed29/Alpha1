@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,IndEntActivity.class);
                 startActivity(intent);
-                finishFromChild((Activity) LoginActivity);
+               // finishFromChild((Activity) LoginActivity);
 
             }
         });

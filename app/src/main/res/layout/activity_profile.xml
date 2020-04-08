@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ProfileActivity">
+    tools:context=".ProfileActivity" >
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -22,35 +23,36 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
-
+<!--
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.PopupOverlay" />  -->
+    <ImageView
+        android:id="@+id/profil_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+           app:layout_anchor="@+id/app_bar"
+           app:layout_anchorGravity="center" >
 
-            <ImageView
-                android:id="@+id/profil_photo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_anchor="@+id/app_bar"
-                app:layout_anchorGravity="center">
+    </ImageView>
+
+        <ImageView
+            android:id="@+id/backbtn3"
+            android:src="@drawable/retoure"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp">
+
+        </ImageView>
 
 
-            </ImageView>
 
-            <ImageView
-                android:id="@+id/backbtn3"
-                android:src="@drawable/retoure"
-                android:layout_marginTop="6dp"
-                android:layout_marginLeft="6dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp">
-
-            </ImageView>
-<ImageView
-    android:layout_marginTop="110dp"
+      <ImageView
+    android:layout_marginTop="1dp"
     android:layout_marginLeft="350dp"
     android:layout_width="40dp"
     android:layout_height="70dp"
@@ -59,8 +61,8 @@
 
 
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+       </com.google.android.material.appbar.CollapsingToolbarLayout>
+   </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_profile" />
 

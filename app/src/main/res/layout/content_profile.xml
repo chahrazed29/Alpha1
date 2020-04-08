@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ProfileActivity"
-    tools:showIn="@layout/activity_profile">
+  tools:context=".ProfileActivity"
+    tools:showIn="@layout/activity_profile"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -84,7 +85,7 @@
     <EditText
         android:id="@+id/descr_modf"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="280dp"
         android:ems="10"
@@ -92,9 +93,14 @@
         android:text=" "
         tools:ignore="InvalidId" />
 </LinearLayout>
-
+        <Button
+            android:id="@+id/changermap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="changer la location "
+            android:layout_marginTop="315dp"></Button>
         <com.google.android.gms.maps.MapView
-            android:id="@+id/mapview"
+            android:id="@+id/MAPview"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="230dp"

@@ -30,26 +30,26 @@ public class PrincipaleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principale);
-        drawer=findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer  ,navigation_drawer_open, navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+      //  drawer=findViewById(R.id.drawer_layout);
+      //  ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer  ,navigation_drawer_open, navigation_drawer_close);
+      //  drawer.addDrawerListener(toggle);
+      //  toggle.syncState();
         imgprofile=  findViewById(R.id.profile);
         imgprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(PrincipaleActivity.this, MainActivity.class);
+                Intent intent =new Intent(PrincipaleActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
     }
-        @Override
-        public void onBackPressed() {
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
-            }
-            else{
-                super.onBackPressed();}}
+      //  @Override
+      //  public void onBackPressed() {
+         //   if (drawer.isDrawerOpen(GravityCompat.START)) {
+           //     drawer.closeDrawer(GravityCompat.START);
+         //   }
+          //  else{
+          //      super.onBackPressed();}}
 
         public boolean isServicesOK(){
             Log.d(TAG, "isServicesOK: checking google services version");
