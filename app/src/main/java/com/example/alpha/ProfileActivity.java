@@ -395,10 +395,10 @@ String z=String.valueOf(DEFAULT_ZOOM);
            }
         }
     private void selectImage(Context context) {
-        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
+        final CharSequence[] options = {"Prendre Une Photo", "Choisir Une Photo", "Annuler"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Choose your profile picture");
+        builder.setTitle("Choisissez votre Photo de Profil");
 
         builder.setItems(options, new DialogInterface.OnClickListener() {
 
@@ -452,6 +452,8 @@ String z=String.valueOf(DEFAULT_ZOOM);
 
                     }
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + requestCode);
             }
         }
     }
