@@ -254,7 +254,7 @@ String z=String.valueOf(DEFAULT_ZOOM);
             String e = etemail.getText().toString();
             String t = etphone.getText().toString();
             String d = etdesc.getText().toString();
-            String id = String.valueOf(getid);
+            String id = tring.valueOf(getid);
 
             mydb = new DatabaseHelper(this);
             db = mydb.getWritableDatabase();
