@@ -9,23 +9,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Spinner;
 
-public class ScrollingActivity extends AppCompatActivity {
-
+public class Entreprise_ProfileActivity extends AppCompatActivity {
+Spinner spinnerentr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling);
+        setContentView(R.layout.activity_entreprise__profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        addListenerOnSpinnerItemSelection();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    }
+    public void addListenerOnSpinnerItemSelection() {
+        spinnerentr = (Spinner) findViewById(R.id.spinner_entr);
+        spinnerentr.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 }

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ProfileActivity" >
-
+    tools:context=".Entreprise_ProfileActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -23,15 +22,16 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
-            <!--
-                        <androidx.appcompat.widget.Toolbar
-                            android:id="@+id/toolbar"
-                            android:layout_width="match_parent"
-                            android:layout_height="?attr/actionBarSize"
-                            app:layout_collapseMode="pin"
-                            app:popupTheme="@style/AppTheme.PopupOverlay" />  -->
+<!--
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" /> -->
+
             <ImageView
-                android:id="@+id/profil_photo"
+                android:id="@+id/profil_photo_entr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_anchor="@+id/app_bar"
@@ -40,7 +40,7 @@
             </ImageView>
 
             <ImageView
-                android:id="@+id/backbtn3"
+                android:id="@+id/backbtn3_entr"
                 android:src="@drawable/retoure"
                 android:layout_marginTop="6dp"
                 android:layout_marginLeft="6dp"
@@ -56,15 +56,14 @@
                 android:layout_marginLeft="350dp"
                 android:layout_width="40dp"
                 android:layout_height="70dp"
-                android:id="@+id/photo_modf"
+                android:id="@+id/photo_modf_entr"
                 android:src="@drawable/ic_photo_modf" ></ImageView>
-
-
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_profile" />
+    <include layout="@layout/content_entreprise__profile" />
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

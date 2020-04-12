@@ -49,6 +49,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -67,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
     MapView mapview;
     ImageView imageView;
     ImageView photobtn;
+    Spinner spinner;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
@@ -93,6 +95,7 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
         photobtn=findViewById(R.id.photo_modf);
    mapview=findViewById(R.id.MAPview);
 initMap();
+        addListenerOnSpinnerItemSelection();
 btnch=findViewById(R.id.changermap);
  btnch.setOnClickListener(new View.OnClickListener() {
      @Override
@@ -452,4 +455,9 @@ String z=String.valueOf(DEFAULT_ZOOM);
         }
         return super.onOptionsItemSelected(item);
     }
+    public void addListenerOnSpinnerItemSelection() {
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+    }
+
     }
