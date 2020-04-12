@@ -49,7 +49,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -78,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
     //vars
     private Boolean mLocationPermissionsGranted = false;
     ImageView retoure;
-    TextView etnomutl, etemail, etphone, etdesc;
+    EditText etnomutl, etemail, etphone, etdesc;
     DatabaseHelper mydb;
     SQLiteDatabase db;
     double  lg;
@@ -90,27 +89,28 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
         setContentView(R.layout.activity_profile);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Intent mIntent = getIntent();
-        String sessionEmail = mIntent.getStringExtra("EXTRA_SESSION_EMAIL");
-
         imageView=findViewById(R.id.profil_photo);
-        mydb = new DatabaseHelper(this);
+        photobtn=findViewById(R.id.photo_modf);
+   mapview=findViewById(R.id.MAPview);
+initMap();
+btnch=findViewById(R.id.changermap);
+ btnch.setOnClickListener(new View.OnClickListener() {
+     @Override
+     public void onClick(View v) {
+         getLocationPermission();
+     }
+ });
+ photobtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // captureFromCameraandgallery();
+                selectImage(ProfileActivity.this); }
+        });
+ mydb = new DatabaseHelper(this);
         etnomutl = findViewById(R.id.nom_modf);
-        etnomutl.setText(getUsername(sessionEmail));
         etemail =  findViewById(R.id.email_modf);
         etphone =  findViewById(R.id.tlph_modf);
         etdesc =  findViewById(R.id.descr_modf);
-        photobtn=findViewById(R.id.photo_modf);
-        mapview=findViewById(R.id.MAPview);
-        initMap();
-    btnch=findViewById(R.id.changermap);
-    btnch.setOnClickListener(new View.OnClickListener() {
-     @Override
-     public void onClick(View v) {
-
-         getLocationPermission();
-     }
-     });
  //mapview.setOnClickListener(new View.OnClickListener() {
   //   @Override
   //  public void onClick(View v) {
@@ -120,13 +120,7 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
    //  }
  // });
 
-     photobtn.setOnClickListener(new View.OnClickListener() {
-         @Override
-           public void onClick(View v) {
-          // captureFromCameraandgallery();
-             selectImage(ProfileActivity.this);
-          }
-     });
+
 
      //  retoure.findViewById(R.id.backbtn3);
      /*  retoure.setOnClickListener(new View.OnClickListener() {
@@ -286,62 +280,18 @@ String z=String.valueOf(DEFAULT_ZOOM);
         }
 
 */
-
-    public int findId(String email){
-        db=mydb.getReadableDatabase();
-        int id;
-        Cursor cur1=db.rawQuery("SELECT "+mydb.INDIVIDUE_ID_NUM+" FROM "+mydb.INDIVIDUE_TABLE+" WHERE "+mydb.INDIVIDUE_EMAIL+"=? ",new String[]{email});
-        int cursorCount1 = cur1.getCount();
-
-
-        if (cursorCount1 > 0){
-            cur1.moveToFirst();
-            id=cur1.getInt(0);
-            cur1.close();
-            return id;
-        }
-        else{
-            Cursor cur2=db.rawQuery("SELECT "+mydb.ENTREPRISE_ID_NUM+" FROM "+mydb.ENTREPRISE_TABLE+" WHERE "+mydb.ENTREPRISE_EMAIL+"=? ",new String[]{email});
-            cur2.moveToFirst();
-            id=cur2.getInt(0);
-            cur2.close();
-            return id;
-        }
-    }
-    public String getUsername(String email){
-
-        db=mydb.getReadableDatabase();
-        int id=findId(email);
-        Cursor cur=db.rawQuery("SELECT "+mydb.INDIVIDUE_USER_NAME+" FROM "+mydb.INDIVIDUE_TABLE+" WHERE "+mydb.INDIVIDUE_ID_NUM+"=? ",new String[]{String.valueOf(id)});
-        cur.moveToFirst();
-        String username=cur.getString(0);
-        cur.close();
-
-        return username ;
-
-
-    }
-
-
-    private void initMap () {
+        private void initMap () {
             Log.d(TAG, "initMap: initialisation du map");
           if (mapview != null) {
 
               mapview.onCreate(null);
               mapview.onResume();
                 mapview.getMapAsync(ProfileActivity.this);
-
-           }
-        }
-
-       private void getDeviceLocation () {
+          } }
+          private void getDeviceLocation () {
             Log.d(TAG, "getDeviceLocation: getting the devices current location");
-
-
             FusedLocationProviderClient mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-            try {
-                if (mLocationPermissionsGranted) {
-
+            try { if (mLocationPermissionsGranted) {
                     final Task location = mFusedLocationProviderClient.getLastLocation();
                     location.addOnCompleteListener(new OnCompleteListener() {
                         @Override
@@ -351,20 +301,14 @@ String z=String.valueOf(DEFAULT_ZOOM);
                                 Location currentLocation = (Location) task.getResult();
                                 lg=currentLocation.getLongitude();
                                  lat=currentLocation.getLatitude();
-                                moveCamera(new LatLng(lat, lg),DEFAULT_ZOOM);
+                                moveCamera(new LatLng(lat, lg),DEFAULT_ZOOM);}
                                 //   modfmap();
-                            } else {
+                            else {
                                 Log.d(TAG, "onComplete: current location is null");
                                 Toast.makeText(ProfileActivity.this, "impossible d'avoir la localisation  ", Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-                    });
-                }
+                            } }}); }
             } catch (SecurityException e) {
-                Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage());
-            }
-        }
+                Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage()); } }
 
         private void moveCamera (LatLng latLng,float zoom){
             Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
@@ -391,8 +335,7 @@ String z=String.valueOf(DEFAULT_ZOOM);
                 ActivityCompat.requestPermissions(this,
                         permissions,
                         LOCATION_PERMISSION_REQUEST_CODE);
-            }
-        }
+            } }
 
         @Override
         public void onRequestPermissionsResult ( int requestCode, @NonNull String[] permissions,
@@ -408,16 +351,12 @@ String z=String.valueOf(DEFAULT_ZOOM);
                                 mLocationPermissionsGranted = false;
                                 Log.d(TAG, "onRequestPermissionsResult: permission failed");
                                 return;
-                            }
-                        }
+                            }}
                         Log.d(TAG, "onRequestPermissionsResult: permission granted");
                         mLocationPermissionsGranted = true;
                         //initialize our map
                         initMap();
-                    }
-                }
-            }
-        }
+                    } } } }
 
         @Override
         public void onMapReady (GoogleMap googleMap){
@@ -446,15 +385,12 @@ String z=String.valueOf(DEFAULT_ZOOM);
 
             @Override
             public void onClick(DialogInterface dialog, int item) {
-
                 if (options[item].equals("Prendre Une Photo")) {
                     Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(takePicture, 0);
-
                 } else if (options[item].equals("Choisir Une Photo")) {
                     Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
-
                 } else if (options[item].equals("Annuler")) {
                     dialog.dismiss();
                 }
@@ -471,9 +407,7 @@ String z=String.valueOf(DEFAULT_ZOOM);
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-                        imageView.setImageBitmap(selectedImage);
-                    }
-
+                        imageView.setImageBitmap(selectedImage); }
                     break;
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
@@ -488,17 +422,15 @@ String z=String.valueOf(DEFAULT_ZOOM);
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                                 String picturePath = cursor.getString(columnIndex);
                                 imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                cursor.close();
-                            }
+                                cursor.close(); }
                         }
-
                     }
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + requestCode);
             }
         }
-    }
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
