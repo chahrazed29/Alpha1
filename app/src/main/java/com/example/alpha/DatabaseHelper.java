@@ -12,7 +12,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATA_BASE = "Recyclini.db";
 
-    public static final String LOCATION_ID = "id";
+    public static final String LOCATION_ID = "idlocation";
+
     /* latitude */
     public static final String LOCATION_LAT = "lat";
 
@@ -24,10 +25,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String LOCATION_TABLE = "locations";
     public  static final String CREATE_LOCATION ="CREATE TABLE "+LOCATION_TABLE+ " ( " +
-            LOCATION_ID + " integer primary key autoincrement , " +
-            LOCATION_LNG + " double , " +
-            LOCATION_LAT + " double , " +
-            LOCATION_ZOOM + " text " +
+            LOCATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
+            LOCATION_LNG + " DOUBLE , " +
+            LOCATION_LAT + " DOUBLE , " +
+            LOCATION_ZOOM + " TEXT " +
             " ) ";
     //individue table
     public static final String INDIVIDUE_TABLE = "individue";
@@ -35,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String INDIVIDUE_USER_NAME="username";
     public static final String INDIVIDUE_PHONE="phone";
     public static final String INDIVIDUE_EMAIL="email";
-    public  static  final  String INDIVIDUE_DESCRIPTION="description";
+    public static final String INDIVIDUE_DESCRIPTION="description";
     public static final String INDIVIDUE_PASS_WORD="password";
     public static final String INDIVIDUE_IMAGE="image";
 
@@ -51,9 +52,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ENTREPRISE_PHONE="phone";
     public static final String ENTREPRISE_NRC="numrc";
     public static final String ENTREPRISE_EMAIL="email";
+    public static final String ENTREPRISE_DESCRIPTION="description";
     public static final String ENTREPRISE_PASS_WORD="password";
+    public static final String ENTREPRISE_IMAGE="image";
     public static final String CREATE_ENTREPRISE="CREATE TABLE "+ENTREPRISE_TABLE+" ( "+ENTREPRISE_ID_NUM+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +ENTREPRISE_USER_NAME+" TEXT NOT NULL , "+ENTREPRISE_PHONE+" INTEGER , "+ENTREPRISE_NRC+" INTEGER NOT NULL , "+ENTREPRISE_EMAIL+" TEXT UNIQUE , "+ENTREPRISE_PASS_WORD+" TEXT NOT NULL );";
+            +ENTREPRISE_USER_NAME+" TEXT NOT NULL , "+ENTREPRISE_PHONE+" INTEGER , "+ENTREPRISE_NRC+" INTEGER NOT NULL , "+ENTREPRISE_EMAIL+" TEXT UNIQUE , "+ENTREPRISE_PASS_WORD+" TEXT NOT NULL ,"+ENTREPRISE_DESCRIPTION+" TEXT,"+ENTREPRISE_IMAGE+"BLOB,"+LOCATION_ID+" INTEGER,"
+            + " CONSTRAINT fk_location FOREIGN KEY ("+LOCATION_ID+") REFERENCES "+ LOCATION_TABLE +"("+LOCATION_ID+"));";
 
 
     //annonce table
@@ -74,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(@Nullable Context context) {
 
-        super(context,DATA_BASE, null,4);
+        super(context,DATA_BASE, null,5);
 
     }
 
@@ -93,6 +97,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
        db.execSQL("DROP TABLE IF EXISTS "+INDIVIDUE_TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+ENTREPRISE_TABLE );
         db.execSQL("DROP TABLE IF EXISTS "+ANNONCE_TABLE );
+        db.execSQL("DROP TABLE IF EXISTS "+LOCATION_TABLE);
+
         onCreate(db);
 
     }
@@ -230,7 +236,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if((checkIndividue(email,password)==true)||(checkEntreprise(email,password)==true)) return true ;
 
         return false;
-    } public boolean updateData(String id,String nom,String phone,String email,String desc) {
+    }
+    public boolean updateData(String id,String nom,String phone,String email,String desc) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(INDIVIDUE_ID_NUM,id);
@@ -279,7 +286,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /** Returns all the locations from the table */
     public Cursor getAllLocations(){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         return db.query(LOCATION_TABLE, new String[] { LOCATION_ID, LOCATION_LAT , LOCATION_LNG, LOCATION_ZOOM } , null, null, null, null, null);
     }

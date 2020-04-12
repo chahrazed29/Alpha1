@@ -1,6 +1,8 @@
 package com.example.alpha;
+import android.accounts.Account;
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,31 +27,40 @@ public class PrincipaleActivity extends AppCompatActivity {
     ImageView imgprofile;
     public static int id;
     private static final int ERROR_DIALOG_REQUEST = 9001;
-    private DrawerLayout drawer;
+    DatabaseHelper mydb;
+    SQLiteDatabase db;
+   //private DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principale);
-        drawer=findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer  ,navigation_drawer_open, navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        //drawer=findViewById(R.id.drawer_layout);
+        //ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer  ,navigation_drawer_open, navigation_drawer_close);
+        //drawer.addDrawerListener(toggle);
+        //toggle.syncState();
+
+
+        Intent mIntent = getIntent();
+       final String sessionEmail = mIntent.getStringExtra("EXTRA_SESSION_EMAIL");
+
         imgprofile=  findViewById(R.id.profile);
+
         imgprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(PrincipaleActivity.this, MainActivity.class);
+                Intent intent =new Intent(PrincipaleActivity.this, ProfileActivity.class);
+                intent.putExtra("EXTRA_SESSION_EMAIL",sessionEmail);
                 startActivity(intent);
             }
         });
     }
-        @Override
+        /*@Override
         public void onBackPressed() {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             }
             else{
-                super.onBackPressed();}}
+                super.onBackPressed();}}*/
 
         public boolean isServicesOK(){
             Log.d(TAG, "isServicesOK: checking google services version");
@@ -72,5 +83,14 @@ public class PrincipaleActivity extends AppCompatActivity {
             return false;
         }
 
+       /* public int checkUser(String email){
+
+
+            if(mydb.checkIndividueEmail(email)){
+                return 0;
+            }else{
+                return 1;
+            }
+        }*/
 
 }

@@ -34,7 +34,8 @@ public class IndividuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                finish();
+                Intent intent=new Intent(IndividuActivity.this,IndEntActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -51,11 +52,11 @@ public class IndividuActivity extends AppCompatActivity {
                     if (!mydb.checkUserEmail(email)) {
                         creatIndividue();
 
-                        Intent intent = new Intent(IndividuActivity.this, PrincipaleActivity.class);
-                        ProfileActivity.getid=getid(email);
+                        Intent intent = new Intent(IndividuActivity.this, LoginActivity.class);
                         startActivity(intent);
-
                         finish();
+
+
                     } else {
                         Toast.makeText(IndividuActivity.this, "Email déjà utiliser", Toast.LENGTH_SHORT).show();
                     }
@@ -66,14 +67,12 @@ public class IndividuActivity extends AppCompatActivity {
             }
         });
 
-        /*etUsername=(EditText)findViewById(R.id.editText2);
-        etEmail=(EditText)findViewById(R.id.editText4);
-        etPassword=(EditText)findViewById(R.id.editText5);*/
+
 
 
     }
 
-    public int getid(String email) {
+   /* public int getid(String email) {
         String query = "SELECT " + mydb.INDIVIDUE_ID_NUM + "FROM " + mydb.INDIVIDUE_TABLE + " WHERE "
                 + mydb.INDIVIDUE_EMAIL + " = '" + email + "'";
         SQLiteDatabase db = mydb.getReadableDatabase();
@@ -88,7 +87,7 @@ public class IndividuActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "cursor is null", Toast.LENGTH_LONG).show();
 
           }    return -1;
-    }
+    }*/
 
 
     public void creatIndividue(){

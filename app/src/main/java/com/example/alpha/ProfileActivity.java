@@ -49,6 +49,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -77,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
     //vars
     private Boolean mLocationPermissionsGranted = false;
     ImageView retoure;
-    EditText etnomutl, etemail, etphone, etdesc;
+    TextView etnomutl, etemail, etphone, etdesc;
     DatabaseHelper mydb;
     SQLiteDatabase db;
     double  lg;
@@ -89,23 +90,27 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
         setContentView(R.layout.activity_profile);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Intent mIntent = getIntent();
+        String sessionEmail = mIntent.getStringExtra("EXTRA_SESSION_EMAIL");
+
         imageView=findViewById(R.id.profil_photo);
         mydb = new DatabaseHelper(this);
         etnomutl = findViewById(R.id.nom_modf);
+        etnomutl.setText(getUsername(sessionEmail));
         etemail =  findViewById(R.id.email_modf);
         etphone =  findViewById(R.id.tlph_modf);
         etdesc =  findViewById(R.id.descr_modf);
         photobtn=findViewById(R.id.photo_modf);
-   mapview=findViewById(R.id.MAPview);
-initMap();
-btnch=findViewById(R.id.changermap);
- btnch.setOnClickListener(new View.OnClickListener() {
+        mapview=findViewById(R.id.MAPview);
+        initMap();
+    btnch=findViewById(R.id.changermap);
+    btnch.setOnClickListener(new View.OnClickListener() {
      @Override
      public void onClick(View v) {
 
          getLocationPermission();
      }
- });
+     });
  //mapview.setOnClickListener(new View.OnClickListener() {
   //   @Override
   //  public void onClick(View v) {
@@ -281,7 +286,44 @@ String z=String.valueOf(DEFAULT_ZOOM);
         }
 
 */
-        private void initMap () {
+
+    public int findId(String email){
+        db=mydb.getReadableDatabase();
+        int id;
+        Cursor cur1=db.rawQuery("SELECT "+mydb.INDIVIDUE_ID_NUM+" FROM "+mydb.INDIVIDUE_TABLE+" WHERE "+mydb.INDIVIDUE_EMAIL+"=? ",new String[]{email});
+        int cursorCount1 = cur1.getCount();
+
+
+        if (cursorCount1 > 0){
+            cur1.moveToFirst();
+            id=cur1.getInt(0);
+            cur1.close();
+            return id;
+        }
+        else{
+            Cursor cur2=db.rawQuery("SELECT "+mydb.ENTREPRISE_ID_NUM+" FROM "+mydb.ENTREPRISE_TABLE+" WHERE "+mydb.ENTREPRISE_EMAIL+"=? ",new String[]{email});
+            cur2.moveToFirst();
+            id=cur2.getInt(0);
+            cur2.close();
+            return id;
+        }
+    }
+    public String getUsername(String email){
+
+        db=mydb.getReadableDatabase();
+        int id=findId(email);
+        Cursor cur=db.rawQuery("SELECT "+mydb.INDIVIDUE_USER_NAME+" FROM "+mydb.INDIVIDUE_TABLE+" WHERE "+mydb.INDIVIDUE_ID_NUM+"=? ",new String[]{String.valueOf(id)});
+        cur.moveToFirst();
+        String username=cur.getString(0);
+        cur.close();
+
+        return username ;
+
+
+    }
+
+
+    private void initMap () {
             Log.d(TAG, "initMap: initialisation du map");
           if (mapview != null) {
 

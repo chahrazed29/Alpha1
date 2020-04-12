@@ -33,7 +33,8 @@ public class EntrepriseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                finish();
+                Intent intent=new Intent(EntrepriseActivity.this,IndEntActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -50,7 +51,7 @@ public class EntrepriseActivity extends AppCompatActivity {
                     String email = etEmail.getText().toString().trim();
                     if(!mydb.checkUserEmail(email)){
                         creatEntreprise();
-                        Intent intent=new Intent(EntrepriseActivity.this,PrincipaleActivity.class);
+                        Intent intent=new Intent(EntrepriseActivity.this,LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }

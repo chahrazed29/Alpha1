@@ -22,6 +22,7 @@ public class  IndEntActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(IndEntActivity.this, IndividuActivity.class);
                 startActivity(intent);
+                finish();
 
 
             }
@@ -34,6 +35,7 @@ public class  IndEntActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent( IndEntActivity.this,EntrepriseActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -41,6 +43,8 @@ public class  IndEntActivity extends AppCompatActivity {
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(IndEntActivity.this,MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

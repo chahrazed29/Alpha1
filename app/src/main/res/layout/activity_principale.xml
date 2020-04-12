@@ -226,22 +226,22 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/marker" />
 
+
     <ImageView
-        android:clickable="true"
         android:id="@+id/profile"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView20"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/btnMap"
         app:layout_constraintTop_toTopOf="@+id/imageView20"
-        app:layout_constraintVertical_bias="0.583"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/profil1"
         tools:ignore="UnknownId" />
-
 
     <ImageView
         android:id="@+id/imageView37"
