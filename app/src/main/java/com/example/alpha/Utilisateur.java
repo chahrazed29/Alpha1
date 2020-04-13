@@ -1,31 +1,43 @@
 package com.example.alpha;
 
 public class Utilisateur {
-    private long idnum;
+    private int idnum;
     private String username;
-    private long phone;
+    private int phone;
     private String email;
     private String password;
-    //localisation
+    private String desc;
+    private int idlocation;
+   private String wilaya;
 
-
-    public Utilisateur( String username, long phone, String email, String password) {
-
+    public Utilisateur(int idnum, String username, int phone, String email, String password, String desc, int idlocation,String wilaya) {
+        this.idnum = idnum;
         this.username = username;
         this.phone = phone;
         this.email = email;
         this.password = password;
+        this.desc = desc;
+        this.idlocation = idlocation;
+        this.wilaya = wilaya;
     }
-
+    public Utilisateur(int idnum, String username, int phone, String email, String desc, int idlocation,String wilaya) {
+        this.idnum = idnum;
+        this.username = username;
+        this.phone = phone;
+        this.email = email;
+        this.desc = desc;
+        this.idlocation = idlocation;
+        this.wilaya = wilaya;
+    }
     public Utilisateur(){
 
     }
 
-    public long getIdnum() {
+    public int getIdnum() {
         return idnum;
     }
 
-    public void setIdnum(long idnum) {
+    public void setIdnum(int idnum) {
         this.idnum = idnum;
     }
 
@@ -34,14 +46,14 @@ public class Utilisateur {
     }
 
     public void setUsername(String username) {
-        this.username= username;
+        this.username = username;
     }
 
-    public long getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
@@ -55,6 +67,30 @@ public class Utilisateur {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public int getIdlocation() {
+        return idlocation;
+    }
+
+    public void setIdlocation(int idlocation) {
+        this.idlocation = idlocation;
+    }
+
+    public String getWilaya() {
+        return wilaya;
+    }
+
+    public void setWilaya(String wilaya) {
+        this.wilaya = wilaya;
     }
 
     public void setPassword(String password) {

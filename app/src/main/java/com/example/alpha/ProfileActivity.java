@@ -50,6 +50,7 @@ import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -62,12 +63,12 @@ import java.util.Date;
 //implements OnMapReadyCallback
 public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCallback  {
     private static final String TAG = "ProfileActivity";
-    View view;
-    Bitmap yourSelectedImage;
-    GoogleMap map;
+    private View view;
+    private Bitmap yourSelectedImage;
+      GoogleMap map;
     MapView mapview;
-    ImageView imageView;
-    ImageView photobtn;
+    private ImageView imageView;
+    private ImageView photobtn;
     Spinner spinner;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -78,42 +79,65 @@ public class ProfileActivity extends AppCompatActivity  implements OnMapReadyCal
   public static final int   CAMERA_REQUEST_CODE=0;
     //vars
     private Boolean mLocationPermissionsGranted = false;
-    ImageView retoure;
-    EditText etnomutl, etemail, etphone, etdesc;
-    DatabaseHelper mydb;
-    SQLiteDatabase db;
-    double  lg;
-    double  lat;
-    Button btnch;
+    private ImageView retoure;
+    private TextView etnomutl, etemail, etphone, etdesc;
+    private DatabaseHelper mydb;
+    private SQLiteDatabase db;
+    private double  lg;
+    private double  lat;
+    private Button btnch;
+    private ImageView backbutton;
+    private Individue individue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Intent mIntent = getIntent();
+        final String sessionEmail = mIntent.getStringExtra("EXTRA_SESSION_EMAIL");
+
+        backbutton=findViewById(R.id.backbtn3);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ProfileActivity.this,PrincipaleActivity.class);
+                intent.putExtra("EXTRA_SESSION_EMAIL", sessionEmail);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
         imageView=findViewById(R.id.profil_photo);
         photobtn=findViewById(R.id.photo_modf);
-   mapview=findViewById(R.id.MAPview);
-initMap();
+       mapview=findViewById(R.id.MAPview);
+        initMap();
         addListenerOnSpinnerItemSelection();
-btnch=findViewById(R.id.changermap);
- btnch.setOnClickListener(new View.OnClickListener() {
+         btnch=findViewById(R.id.changermap);
+        btnch.setOnClickListener(new View.OnClickListener() {
      @Override
      public void onClick(View v) {
          getLocationPermission();
      }
  });
- photobtn.setOnClickListener(new View.OnClickListener() {
+        photobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // captureFromCameraandgallery();
                 selectImage(ProfileActivity.this); }
         });
  mydb = new DatabaseHelper(this);
+        individue=new Individue();
+        individue=getIndividue(sessionEmail);
         etnomutl = findViewById(R.id.nom_modf);
+        etnomutl.setText(individue.getUsername());
         etemail =  findViewById(R.id.email_modf);
+        etemail.setText(sessionEmail);
         etphone =  findViewById(R.id.tlph_modf);
+        etphone.setText(String.valueOf(individue.getPhone()));
         etdesc =  findViewById(R.id.descr_modf);
+        etdesc.setText(individue.getDesc());
  //mapview.setOnClickListener(new View.OnClickListener() {
   //   @Override
   //  public void onClick(View v) {
@@ -283,7 +307,38 @@ String z=String.valueOf(DEFAULT_ZOOM);
         }
 
 */
-        private void initMap () {
+public int findId(String email){
+    db=mydb.getReadableDatabase();
+    int id;
+    Cursor cur=db.rawQuery("SELECT "+mydb.INDIVIDUE_ID_NUM+" FROM "+mydb.INDIVIDUE_TABLE+" WHERE "+mydb.INDIVIDUE_EMAIL+"=? ",new String[]{email});
+
+        cur.moveToFirst();
+        id=cur.getInt(0);
+        cur.close();
+        return id;
+
+}
+    public Individue getIndividue(String email){
+
+        db=mydb.getReadableDatabase();
+        int id=findId(email);
+        Cursor cur=db.rawQuery("SELECT * FROM "+mydb.INDIVIDUE_TABLE+" WHERE "+mydb.INDIVIDUE_ID_NUM+"=? ",new String[]{String.valueOf(id)});
+        cur.moveToFirst();
+        String username=cur.getString(1);
+        int phone=cur.getInt(2);
+        String email1=cur.getString(3);
+        String desc=cur.getString(5);
+        int idlocation=cur.getInt(7);
+        String wilaya=cur.getString(8);
+        Individue individue=new Individue(id,username,phone,email1,desc,idlocation,wilaya);
+        cur.close();
+
+        return individue ;
+
+
+    }
+
+    private void initMap () {
             Log.d(TAG, "initMap: initialisation du map");
           if (mapview != null) {
 
