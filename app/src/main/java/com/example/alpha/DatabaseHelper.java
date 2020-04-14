@@ -39,9 +39,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String INDIVIDUE_DESCRIPTION="description";
     public static final String INDIVIDUE_PASS_WORD="password";
     public static final String INDIVIDUE_IMAGE="image";
+    public static final String INDIVIDUE_WILAYA="wilaya";
 
     public static final String CREATE_INDIVIDUE="CREATE TABLE "+INDIVIDUE_TABLE+" ( "+INDIVIDUE_ID_NUM+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-            +INDIVIDUE_USER_NAME+" TEXT NOT NULL , "+INDIVIDUE_PHONE+" INTEGER , "+INDIVIDUE_EMAIL+" TEXT UNIQUE , "+INDIVIDUE_PASS_WORD+" TEXT NOT NULL  , "+INDIVIDUE_DESCRIPTION+" TEXT,"+INDIVIDUE_IMAGE+"BLOB,"+LOCATION_ID+" INTEGER,"
+            +INDIVIDUE_USER_NAME+" TEXT NOT NULL , "+INDIVIDUE_PHONE+" INTEGER , "+INDIVIDUE_EMAIL+" TEXT UNIQUE , "+INDIVIDUE_PASS_WORD+" TEXT NOT NULL  , "+INDIVIDUE_DESCRIPTION+" TEXT,"+INDIVIDUE_IMAGE+"BLOB,"+LOCATION_ID+" INTEGER,"+INDIVIDUE_WILAYA+" TEXT ,"
   + " CONSTRAINT fk_location FOREIGN KEY ("+LOCATION_ID+") REFERENCES "+ LOCATION_TABLE +"("+LOCATION_ID+"));";
 
 
@@ -55,9 +56,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ENTREPRISE_DESCRIPTION="description";
     public static final String ENTREPRISE_PASS_WORD="password";
     public static final String ENTREPRISE_IMAGE="image";
+    public static final String ENTREPRISE_WILAYA="wilaya";
+
     public static final String CREATE_ENTREPRISE="CREATE TABLE "+ENTREPRISE_TABLE+" ( "+ENTREPRISE_ID_NUM+" INTEGER PRIMARY KEY AUTOINCREMENT,"
             +ENTREPRISE_USER_NAME+" TEXT NOT NULL , "+ENTREPRISE_PHONE+" INTEGER , "+ENTREPRISE_NRC+" INTEGER NOT NULL , "+ENTREPRISE_EMAIL+" TEXT UNIQUE , "+ENTREPRISE_PASS_WORD+" TEXT NOT NULL ,"+ENTREPRISE_DESCRIPTION+" TEXT,"+ENTREPRISE_IMAGE+"BLOB,"+LOCATION_ID+" INTEGER,"
-            + " CONSTRAINT fk_location FOREIGN KEY ("+LOCATION_ID+") REFERENCES "+ LOCATION_TABLE +"("+LOCATION_ID+"));";
+            +ENTREPRISE_WILAYA+" TEXT ," + " CONSTRAINT fk_location FOREIGN KEY ("+LOCATION_ID+") REFERENCES "+ LOCATION_TABLE +"("+LOCATION_ID+"));";
 
 
     //annonce table
@@ -78,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(@Nullable Context context) {
 
-        super(context,DATA_BASE, null,5);
+        super(context,DATA_BASE, null,6);
 
     }
 

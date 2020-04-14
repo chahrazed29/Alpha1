@@ -38,7 +38,7 @@ public class PrincipaleActivity extends AppCompatActivity {
         //ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer  ,navigation_drawer_open, navigation_drawer_close);
         //drawer.addDrawerListener(toggle);
         //toggle.syncState();
-
+        mydb = new DatabaseHelper(this);
 
         Intent mIntent = getIntent();
        final String sessionEmail = mIntent.getStringExtra("EXTRA_SESSION_EMAIL");
@@ -48,9 +48,23 @@ public class PrincipaleActivity extends AppCompatActivity {
         imgprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(PrincipaleActivity.this, ProfileActivity.class);
-                intent.putExtra("EXTRA_SESSION_EMAIL",sessionEmail);
-                startActivity(intent);
+               /* Intent intent1 =new Intent(PrincipaleActivity.this, ProfileActivity.class);
+                intent1.putExtra("EXTRA_SESSION_EMAIL",sessionEmail);
+                startActivity(intent1);*/
+
+               if(checkUser(sessionEmail)==0){
+                    Intent intent1 =new Intent(PrincipaleActivity.this, ProfileActivity.class);
+                    intent1.putExtra("EXTRA_SESSION_EMAIL",sessionEmail);
+                     startActivity(intent1);
+                   finish();
+
+                }else{
+                    Intent intent2 =new Intent(PrincipaleActivity.this, Entreprise_ProfileActivity.class);
+                    intent2.putExtra("EXTRA_SESSION_EMAIL",sessionEmail);
+                    startActivity(intent2);
+                   finish();
+
+                }
             }
         });
     }
@@ -83,14 +97,14 @@ public class PrincipaleActivity extends AppCompatActivity {
             return false;
         }
 
-       /* public int checkUser(String email){
+      public int checkUser(String email){
 
 
             if(mydb.checkIndividueEmail(email)){
                 return 0;
-            }else{
-                return 1;
             }
-        }*/
+                return 1;
+
+        }
 
 }

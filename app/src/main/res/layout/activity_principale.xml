@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PrincipaleActivity"
-    android:background="@drawable/backround3">
+    android:background="@drawable/backround3"
+    tools:context=".PrincipaleActivity">
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
         android:layout_marginBottom="96dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView20"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.772"
         app:srcCompat="@drawable/composant" />
 
     <ImageView
@@ -253,15 +255,15 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="3dp"
+        android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/menuvertical"
-        android:clickable="true">
+        app:srcCompat="@drawable/menuvertical">
 
     </ImageView>
-<!--
+    <!--
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="426dp"

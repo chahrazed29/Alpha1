@@ -12,6 +12,8 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="wilaya__prompt">Choisir Votre Wilaya</string>
 
+
+
     <string-array name="wilaya__arrays">
         <item>Adrar</item>
         <item>Chlef</item>
@@ -63,9 +65,6 @@
         <item>Ain Témouchent</item>
         <item>Ghardaia</item>
         <item>Relizane</item>
-
-
-
 
 
     </string-array>
